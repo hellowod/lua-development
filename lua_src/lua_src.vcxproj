@@ -84,7 +84,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{20DE79E0-2B09-4387-9488-F538F9B23737}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>test1_app</RootNamespace>
+    <RootNamespace>lua_app</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
     <ProjectName>lua_app</ProjectName>
   </PropertyGroup>
