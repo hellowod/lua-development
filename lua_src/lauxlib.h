@@ -1,9 +1,9 @@
 /*
 ** $Id: lauxlib.h,v 1.120 2011/11/29 15:55:08 roberto Exp $
 ** Auxiliary functions for building Lua libraries
-** See Copyright Notice in lua.h
+** See Copyright Notice in lua.h、
+** 主要提供标准库辅助函数API
 */
-
 
 #ifndef lauxlib_h
 #define lauxlib_h
@@ -13,8 +13,6 @@
 #include <stdio.h>
 
 #include "lua.h"
-
-
 
 /* extra error code for `luaL_load' */
 #define LUA_ERRFILE     (LUA_ERRERR+1)
@@ -81,6 +79,7 @@ LUALIB_API int (luaL_loadbufferx) (lua_State *L, const char *buff, size_t sz,
                                    const char *name, const char *mode);
 LUALIB_API int (luaL_loadstring) (lua_State *L, const char *s);
 
+// 实例化lua状态机（指针函数）
 LUALIB_API lua_State *(luaL_newstate) (void);
 
 LUALIB_API int (luaL_len) (lua_State *L, int idx);

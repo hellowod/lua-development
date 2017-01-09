@@ -51,7 +51,6 @@
 #define LUA_TLCF	(LUA_TFUNCTION | (1 << 4))  /* light C function */
 #define LUA_TCCL	(LUA_TFUNCTION | (2 << 4))  /* C closure */
 
-
 /*
 ** LUA_TSTRING variants */
 #define LUA_TSHRSTR	(LUA_TSTRING | (0 << 4))  /* short strings */
@@ -106,14 +105,11 @@ typedef union Value Value;
 
 typedef struct lua_TValue TValue;
 
-
 /* macro defining a nil value */
 #define NILCONSTANT	{NULL}, LUA_TNIL
 
-
 #define val_(o)		((o)->value_)
 #define num_(o)		(val_(o).n)
-
 
 /* raw type tag of a TValue */
 #define rttype(o)	((o)->tt_)
@@ -396,15 +392,12 @@ union Value {
   numfield         /* numbers */
 };
 
-
 struct lua_TValue {
   TValuefields;
 };
 
-
-typedef TValue *StkId;  /* index to stack elements */
-
-
+// Õ»ÔªËØ£¨¶ÔÏó£©
+typedef TValue *StkId;
 
 
 /*

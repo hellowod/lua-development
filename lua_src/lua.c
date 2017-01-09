@@ -145,9 +145,10 @@ static int report(lua_State *L, int status) {
 // 虚拟机最终报告信息
 static void finalreport(lua_State *L, int status) {
 	if (status != LUA_OK) {
-		const char *msg = (lua_type(L, -1) == LUA_TSTRING) ? lua_tostring(L, -1)
-			: NULL;
-		if (msg == NULL) msg = "(error object is not a string)";
+		const char *msg = (lua_type(L, -1) == LUA_TSTRING) ? lua_tostring(L, -1) : NULL;
+		if (msg == NULL) {
+			msg = "(error object is not a string)";
+		}
 		l_message(progname, msg);
 		lua_pop(L, 1);
 	}
@@ -156,11 +157,14 @@ static void finalreport(lua_State *L, int status) {
 // 打印返回结果
 static int traceback(lua_State *L) {
 	const char *msg = lua_tostring(L, 1);
-	if (msg)
+	if (msg) {
 		luaL_traceback(L, L, msg, 1);
+	}
 	else if (!lua_isnoneornil(L, 1)) {  /* is there an error object? */
-		if (!luaL_callmeta(L, 1, "__tostring"))  /* try its 'tostring' metamethod */
+		if (!luaL_callmeta(L, 1, "__tostring")) {
+			/* try its 'tostring' metamethod */
 			lua_pushliteral(L, "(no error message)");
+		}
 	}
 	return 1;
 }
@@ -190,11 +194,14 @@ static int getargs(lua_State *L, char **argv, int n) {
 	int narg;
 	int i;
 	int argc = 0;
-	while (argv[argc]) argc++;  /* count total number of arguments */
+	while (argv[argc]) {
+		argc++;  /* count total number of arguments */
+	}
 	narg = argc - (n + 1);  /* number of arguments to the script */
 	luaL_checkstack(L, narg + 3, "too many arguments to script");
-	for (i = n + 1; i < argc; i++)
+	for (i = n + 1; i < argc; i++) {
 		lua_pushstring(L, argv[i]);
+	}
 	lua_createtable(L, narg, n + 1);
 	for (i = 0; i < argc; i++) {
 		lua_pushstring(L, argv[i]);
