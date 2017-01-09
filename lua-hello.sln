@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua_app", "lua_src\lua_src.vcxproj", "{20DE79E0-2B09-4387-9488-F538F9B23737}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua_app", "src\src.vcxproj", "{20DE79E0-2B09-4387-9488-F538F9B23737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

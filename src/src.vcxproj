@@ -81,6 +81,14 @@
     <ClInclude Include="lvm.h" />
     <ClInclude Include="lzio.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="luac.out" />
+    <None Include="main.lua" />
+    <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="luac.out.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{20DE79E0-2B09-4387-9488-F538F9B23737}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
