@@ -888,27 +888,27 @@ LUA_API int lua_getctx(lua_State *L, int *ctx) {
 }
 
 
-LUA_API void lua_callk(lua_State *L, int nargs, int nresults, int ctx,
-	lua_CFunction k) {
+LUA_API void lua_callk(lua_State *L, int nargs, int nresults, int ctx, lua_CFunction k) {
 	StkId func;
 	lua_lock(L);
-	api_check(L, k == NULL || !isLua(L->ci),
-		"cannot use continuations inside hooks");
+	api_check(L, k == NULL || !isLua(L->ci), "cannot use continuations inside hooks");
 	api_checknelems(L, nargs + 1);
 	api_check(L, L->status == LUA_OK, "cannot do calls on non-normal thread");
 	checkresults(L, nargs, nresults);
+
 	func = L->top - (nargs + 1);
 	if (k != NULL && L->nny == 0) {  /* need to prepare continuation? */
 		L->ci->u.c.k = k;  /* save continuation */
 		L->ci->u.c.ctx = ctx;  /* save context */
 		luaD_call(L, func, nresults, 1);  /* do the call */
 	}
-	else  /* no continuation or no yieldable */
+	else  {/* no continuation or no yieldable */
 		luaD_call(L, func, nresults, 0);  /* just do the call */
+	}
+
 	adjustresults(L, nresults);
 	lua_unlock(L);
 }
-
 
 
 /*
@@ -926,21 +926,18 @@ static void f_call(lua_State *L, void *ud) {
 }
 
 
-
-LUA_API int lua_pcallk(lua_State *L, int nargs, int nresults, int errfunc,
-	int ctx, lua_CFunction k) {
+LUA_API int lua_pcallk(lua_State *L, int nargs, int nresults, int errfunc, int ctx, lua_CFunction k) {
 	struct CallS c;
 	int status;
 	ptrdiff_t func;
 	lua_lock(L);
-	api_check(L, k == NULL || !isLua(L->ci),
-		"cannot use continuations inside hooks");
+	api_check(L, k == NULL || !isLua(L->ci), "cannot use continuations inside hooks");
 	api_checknelems(L, nargs + 1);
 	api_check(L, L->status == LUA_OK, "cannot do calls on non-normal thread");
 	checkresults(L, nargs, nresults);
-	if (errfunc == 0)
+	if (errfunc == 0) {
 		func = 0;
-	else {
+	} else {
 		StkId o = index2addr(L, errfunc);
 		api_checkvalidindex(L, o);
 		func = savestack(L, o);

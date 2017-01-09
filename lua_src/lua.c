@@ -1,6 +1,6 @@
 /*
 ** $Id: lua.c,v 1.205 2012/05/23 15:37:09 roberto Exp $
-** Lua stand-alone interpreter
+** lua解释器-注意区别于lua编译器
 ** See Copyright Notice in lua.h
 */
 
