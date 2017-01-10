@@ -519,7 +519,7 @@ static int pmain(lua_State *L) {
 }
 
 
-int main(int argc, char **argv) {
+int main_test(int argc, char **argv) {
 	int status, result;
 
 	// ´´½¨Lua×´Ì¬»ú
