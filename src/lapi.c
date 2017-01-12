@@ -48,8 +48,12 @@ static TValue *index2addr(lua_State *L, int idx) {
 	if (idx > 0) {
 		TValue *o = ci->func + idx;
 		api_check(L, idx <= ci->top - (ci->func + 1), "unacceptable index");
-		if (o >= L->top) return NONVALIDVALUE;
-		else return o;
+		if (o >= L->top) {
+			return NONVALIDVALUE;
+		}
+		else {
+			return o;
+		}
 	}
 	else if (idx > LUA_REGISTRYINDEX) {
 		api_check(L, idx != 0 && -idx <= L->top - (ci->func + 1), "invalid index");
@@ -60,8 +64,9 @@ static TValue *index2addr(lua_State *L, int idx) {
 	else {  /* upvalues */
 		idx = LUA_REGISTRYINDEX - idx;
 		api_check(L, idx <= MAXUPVAL + 1, "upvalue index too large");
-		if (ttislcf(ci->func))  /* light C function? */
+		if (ttislcf(ci->func)) { /* light C function? */
 			return NONVALIDVALUE;  /* it has no upvalues */
+		}
 		else {
 			CClosure *func = clCvalue(ci->func);
 			return (idx <= func->nupvalues) ? &func->upvalue[idx - 1] : NONVALIDVALUE;
@@ -84,17 +89,22 @@ LUA_API int lua_checkstack(lua_State *L, int size) {
 	int res;
 	CallInfo *ci = L->ci;
 	lua_lock(L);
-	if (L->stack_last - L->top > size)  /* stack large enough? */
+	if (L->stack_last - L->top > size) {/* stack large enough? */
 		res = 1;  /* yes; check is OK */
+	}
 	else {  /* no; need to grow stack */
 		int inuse = cast_int(L->top - L->stack) + EXTRA_STACK;
-		if (inuse > LUAI_MAXSTACK - size)  /* can grow without overflow? */
+		if (inuse > LUAI_MAXSTACK - size) {
+			/* can grow without overflow? */
 			res = 0;  /* no */
-		else  /* try to grow stack */
+		}
+		else {  /* try to grow stack */
 			res = (luaD_rawrunprotected(L, &growstack, &size) == LUA_OK);
+		}
 	}
-	if (res && ci->top < L->top + size)
+	if (res && ci->top < L->top + size) {
 		ci->top = L->top + size;  /* adjust frame top */
+	}
 	lua_unlock(L);
 	return res;
 }
@@ -179,7 +189,9 @@ LUA_API void lua_remove(lua_State *L, int idx) {
 	lua_lock(L);
 	p = index2addr(L, idx);
 	api_checkvalidindex(L, p);
-	while (++p < L->top) setobjs2s(L, p - 1, p);
+	while (++p < L->top) {
+		setobjs2s(L, p - 1, p);
+	}
 	L->top--;
 	lua_unlock(L);
 }
@@ -191,7 +203,9 @@ LUA_API void lua_insert(lua_State *L, int idx) {
 	lua_lock(L);
 	p = index2addr(L, idx);
 	api_checkvalidindex(L, p);
-	for (q = L->top; q>p; q--) setobjs2s(L, q, q - 1);
+	for (q = L->top; q > p; q--) {
+		setobjs2s(L, q, q - 1);
+	}
 	setobjs2s(L, p, L->top);
 	lua_unlock(L);
 }
@@ -201,8 +215,9 @@ static void moveto(lua_State *L, TValue *fr, int idx) {
 	TValue *to = index2addr(L, idx);
 	api_checkvalidindex(L, to);
 	setobj(L, to, fr);
-	if (idx < LUA_REGISTRYINDEX)  /* function upvalue? */
+	if (idx < LUA_REGISTRYINDEX) { /* function upvalue? */
 		luaC_barrier(L, clCvalue(L->ci->func), fr);
+	}
 	/* LUA_REGISTRYINDEX does not need gc barrier
 	(collector revisits it before finishing collection) */
 }
@@ -301,8 +316,10 @@ LUA_API void  lua_arith(lua_State *L, int op) {
 	if (ttisnumber(o1) && ttisnumber(o2)) {
 		changenvalue(o1, luaO_arith(op, nvalue(o1), nvalue(o2)));
 	}
-	else
+	else {
 		luaV_arith(L, o1, o1, o2, cast(TMS, op - LUA_OPADD + TM_ADD));
+	}
+		
 	L->top--;
 	lua_unlock(L);
 }
@@ -974,7 +991,9 @@ LUA_API int lua_load(lua_State *L, lua_Reader reader, void *data,
 	ZIO z;
 	int status;
 	lua_lock(L);
-	if (!chunkname) chunkname = "?";
+	if (!chunkname) {
+		chunkname = "?";
+	}
 	luaZ_init(L, &z, reader, data);
 	status = luaD_protectedparser(L, &z, chunkname, mode);
 	if (status == LUA_OK) {  /* no errors? */

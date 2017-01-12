@@ -20,7 +20,6 @@
 #include "lundump.h"
 
 static void PrintFunction(const Proto* f, int full);
-#define luaU_print	PrintFunction
 
 #define PROGNAME	"luac"		/* default program name */
 #define OUTPUT		PROGNAME ".out"	/* default output file */
@@ -178,11 +177,13 @@ static int pmain(lua_State* L) {
 	}
 	f = combine(L, argc);
 	if (listing) {
-		luaU_print(f, listing > 1);
+		PrintFunction(f, listing > 1);
 	}
 	if (dumping) {
 		FILE* D = (output == NULL) ? stdout : fopen(output, "wb");
-		if (D == NULL) cannot("open");
+		if (D == NULL) {
+			cannot("open");
+		}
 		lua_lock(L);
 		luaU_dump(L, f, writer, D, stripping);
 		lua_unlock(L);
@@ -308,7 +309,12 @@ static void PrintCode(const Proto* f)
 		int sbx = GETARG_sBx(i);
 		int line = getfuncline(f, pc);
 		printf("\t%d\t", pc + 1);
-		if (line > 0) printf("[%d]\t", line); else printf("[-]\t");
+		if (line > 0) {
+			printf("[%d]\t", line);
+		}
+		else {
+			printf("[-]\t");
+		}
 		printf("%-9s\t", luaP_opnames[o]);
 		switch (getOpMode(o))
 		{
@@ -393,7 +399,7 @@ static void PrintCode(const Proto* f)
 #define SS(x)	((x==1)?"":"s")
 #define S(x)	(int)(x),SS(x)
 
-// 输出指令头信息
+// 字节码块头信息
 static void PrintHeader(const Proto* f) {
 	const char* s = f->source ? getstr(f->source) : "=?";
 	if (*s == '@' || *s == '=') {

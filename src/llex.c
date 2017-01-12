@@ -514,8 +514,9 @@ void luaX_next(LexState *ls) {
 		ls->t = ls->lookahead;  /* use this one */
 		ls->lookahead.token = TK_EOS;  /* and discharge it */
 	}
-	else
+	else {
 		ls->t.token = llex(ls, &ls->t.seminfo);  /* read next token */
+	}
 }
 
 
