@@ -139,8 +139,7 @@ static const char* reader(lua_State *L, void *ud, size_t *size) {
 static const Proto* combine(lua_State* L, int n) {
 	if (n == 1) {
 		return toproto(L, -1);
-	}
-	else {
+	} else {
 		Proto* f;
 		int i = n;
 		if (lua_load(L, reader, &i, "=(" PROGNAME ")", NULL) != LUA_OK) {
@@ -209,12 +208,16 @@ int main(int argc, char* argv[]) {
 	if (L == NULL) {
 		fatal("cannot create state: not enough memory");
 	}
+
 	lua_pushcfunction(L, &pmain);
 	lua_pushinteger(L, argc);
 	lua_pushlightuserdata(L, argv);
+	
+	// µ÷ÓÃpmainº¯Êý
 	if (lua_pcall(L, 2, 0, 0) != LUA_OK) {
 		fatal(lua_tostring(L, -1));
 	}
+
 	lua_close(L);
 
 	return EXIT_SUCCESS;

@@ -571,12 +571,13 @@ static const char *getF(lua_State *L, void *ud, size_t *size) {
 	if (lf->n > 0) {  /* are there pre-read characters to be read? */
 		*size = lf->n;  /* return them (chars already in buffer) */
 		lf->n = 0;  /* no more pre-read characters */
-	}
-	else {  /* read a block from file */
+	} else {  /* read a block from file */
 			/* 'fread' can return > 0 *and* set the EOF flag. If next call to
 			'getF' called 'fread', it might still wait for user input.
 			The next check avoids this problem. */
-		if (feof(lf->f)) return NULL;
+		if (feof(lf->f)) {
+			return NULL;
+		}
 		*size = fread(lf->buff, 1, sizeof(lf->buff), lf->f);  /* read block */
 	}
 	return lf->buff;
@@ -627,7 +628,6 @@ static int skipcomment(LoadF *lf, int *cp) {
 	else return 0;  /* no comment */
 }
 
-
 // º”‘ÿluaΩ≈±æ
 LUALIB_API int luaL_loadfilex(lua_State *L, const char *filename, const char *mode) {
 	LoadF lf;
@@ -637,8 +637,7 @@ LUALIB_API int luaL_loadfilex(lua_State *L, const char *filename, const char *mo
 	if (filename == NULL) {
 		lua_pushliteral(L, "=stdin");
 		lf.f = stdin;
-	}
-	else {
+	} else {
 		lua_pushfstring(L, "@%s", filename);
 		lf.f = fopen(filename, "r");
 		if (lf.f == NULL) {

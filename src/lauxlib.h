@@ -31,19 +31,15 @@ LUALIB_API int (luaL_getmetafield)(lua_State *L, int obj, const char *e);
 LUALIB_API int (luaL_callmeta)(lua_State *L, int obj, const char *e);
 LUALIB_API const char *(luaL_tolstring)(lua_State *L, int idx, size_t *len);
 LUALIB_API int (luaL_argerror)(lua_State *L, int numarg, const char *extramsg);
-LUALIB_API const char *(luaL_checklstring)(lua_State *L, int numArg,
-	size_t *l);
-LUALIB_API const char *(luaL_optlstring)(lua_State *L, int numArg,
-	const char *def, size_t *l);
+LUALIB_API const char *(luaL_checklstring)(lua_State *L, int numArg, size_t *l);
+LUALIB_API const char *(luaL_optlstring)(lua_State *L, int numArg, const char *def, size_t *l);
 LUALIB_API lua_Number(luaL_checknumber) (lua_State *L, int numArg);
 LUALIB_API lua_Number(luaL_optnumber) (lua_State *L, int nArg, lua_Number def);
 
 LUALIB_API lua_Integer(luaL_checkinteger) (lua_State *L, int numArg);
-LUALIB_API lua_Integer(luaL_optinteger) (lua_State *L, int nArg,
-	lua_Integer def);
+LUALIB_API lua_Integer(luaL_optinteger) (lua_State *L, int nArg, lua_Integer def);
 LUALIB_API lua_Unsigned(luaL_checkunsigned) (lua_State *L, int numArg);
-LUALIB_API lua_Unsigned(luaL_optunsigned) (lua_State *L, int numArg,
-	lua_Unsigned def);
+LUALIB_API lua_Unsigned(luaL_optunsigned) (lua_State *L, int numArg, lua_Unsigned def);
 
 LUALIB_API void (luaL_checkstack)(lua_State *L, int sz, const char *msg);
 LUALIB_API void (luaL_checktype)(lua_State *L, int narg, int t);
@@ -57,8 +53,7 @@ LUALIB_API void *(luaL_checkudata)(lua_State *L, int ud, const char *tname);
 LUALIB_API void (luaL_where)(lua_State *L, int lvl);
 LUALIB_API int (luaL_error)(lua_State *L, const char *fmt, ...);
 
-LUALIB_API int (luaL_checkoption)(lua_State *L, int narg, const char *def,
-	const char *const lst[]);
+LUALIB_API int (luaL_checkoption)(lua_State *L, int narg, const char *def, const char *const lst[]);
 
 LUALIB_API int (luaL_fileresult)(lua_State *L, int stat, const char *fname);
 LUALIB_API int (luaL_execresult)(lua_State *L, int stat);
@@ -70,13 +65,11 @@ LUALIB_API int (luaL_execresult)(lua_State *L, int stat);
 LUALIB_API int (luaL_ref)(lua_State *L, int t);
 LUALIB_API void (luaL_unref)(lua_State *L, int t, int ref);
 
-LUALIB_API int (luaL_loadfilex)(lua_State *L, const char *filename,
-	const char *mode);
+LUALIB_API int (luaL_loadfilex)(lua_State *L, const char *filename, const char *mode);
 
 #define luaL_loadfile(L,f)	luaL_loadfilex(L,f,NULL)
 
-LUALIB_API int (luaL_loadbufferx)(lua_State *L, const char *buff, size_t sz,
-	const char *name, const char *mode);
+LUALIB_API int (luaL_loadbufferx)(lua_State *L, const char *buff, size_t sz, const char *name, const char *mode);
 LUALIB_API int (luaL_loadstring)(lua_State *L, const char *s);
 
 // 实例化lua状态机（指针函数）
@@ -84,18 +77,15 @@ LUALIB_API lua_State *(luaL_newstate)(void);
 
 LUALIB_API int (luaL_len)(lua_State *L, int idx);
 
-LUALIB_API const char *(luaL_gsub)(lua_State *L, const char *s, const char *p,
-	const char *r);
+LUALIB_API const char *(luaL_gsub)(lua_State *L, const char *s, const char *p, const char *r);
 
 LUALIB_API void (luaL_setfuncs)(lua_State *L, const luaL_Reg *l, int nup);
 
 LUALIB_API int (luaL_getsubtable)(lua_State *L, int idx, const char *fname);
 
-LUALIB_API void (luaL_traceback)(lua_State *L, lua_State *L1,
-	const char *msg, int level);
+LUALIB_API void (luaL_traceback)(lua_State *L, lua_State *L1, const char *msg, int level);
 
-LUALIB_API void (luaL_requiref)(lua_State *L, const char *modname,
-	lua_CFunction openf, int glb);
+LUALIB_API void (luaL_requiref)(lua_State *L, const char *modname, lua_CFunction openf, int glb);
 
 /*
 ** ===============================================================
