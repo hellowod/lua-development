@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="luac.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lundump.c">
       <Filter>Source Files</Filter>
     </ClCompile>

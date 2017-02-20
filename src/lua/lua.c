@@ -519,7 +519,7 @@ static int pmain(lua_State *L) {
 }
 
 
-int main_test(int argc, char **argv) {
+int main(int argc, char **argv) {
 	int status, result;
 
 	// 创建Lua状态机
@@ -530,17 +530,21 @@ int main_test(int argc, char **argv) {
 		return EXIT_FAILURE;
 	}
 
-	// 将pmain函数入栈
-	lua_pushcfunction(L, &pmain);
+	// 完整函数调用过程
+	//########################################
 
-	// 参数个数入栈
+	// 函数入栈
+	lua_pushcfunction(L, &pmain);
+	// 函数第一个参数入栈（int）
 	lua_pushinteger(L, argc);
-	// 参数内容（第二个参数）入栈
+	// 函数第二个参数入栈（userdata）
 	lua_pushlightuserdata(L, argv);
-	// 调用函数
+	// 调用函数（L，参数个数，返回值个数，错误信息）
 	status = lua_pcall(L, 2, 1, 0);
-	// 获取结果
+	// 函数返回结果
 	result = lua_toboolean(L, -1);
+
+	//########################################
 
 	finalreport(L, status);
 	lua_close(L);
