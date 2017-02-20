@@ -23,13 +23,15 @@ static int math_hello(lua_State* L) {
 	return 0;
 }
 
-static const struct luaL_Reg math_funs[] = {
+static const struct luaL_Reg tstlib[] = {
 	{ "average", math_average },
 	{ "hello", math_hello },
 	{ NULL, NULL }
 };
 
-LUAMOD_API int luaopen_mathlib(lua_State *L) {
-	luaL_openlib(L, "ml", math_funs, 0);
-	return 0;
+LUA_TSTAPI int luaopen_tstlib(lua_State *L) {
+	luaL_newlib(L, tstlib);
+	lua_pushvalue(L, -1);
+	lua_setglobal(L, "tst");
+	return 1;
 }

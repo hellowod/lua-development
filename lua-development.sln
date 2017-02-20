@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "src\lua\lua.vcxproj", "{20DE79E0-2B09-4387-9488-F538F9B23737}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -15,11 +15,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luac", "src\luac\luac.vcxpr
 		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460} = {D62F4594-16C2-4EA7-B8E8-5732B7DA7460}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lualib", "src\lualib\lualib.vcxproj", "{973D7157-6AAA-49F8-B91C-19340A80927E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lualib", "libs\lualib\lualib.vcxproj", "{973D7157-6AAA-49F8-B91C-19340A80927E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{564AD846-CCCE-4F44-BD36-298ABEB249EB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mathlib", "libs\mathlib\mathlib.vcxproj", "{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tstlib", "libs\tstlib\tstlib.vcxproj", "{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}"
 	ProjectSection(ProjectDependencies) = postProject
 		{973D7157-6AAA-49F8-B91C-19340A80927E} = {973D7157-6AAA-49F8-B91C-19340A80927E}
 	EndProjectSection
@@ -79,6 +79,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{973D7157-6AAA-49F8-B91C-19340A80927E} = {564AD846-CCCE-4F44-BD36-298ABEB249EB}
 		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460} = {564AD846-CCCE-4F44-BD36-298ABEB249EB}
 	EndGlobalSection
 EndGlobal

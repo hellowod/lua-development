@@ -21,6 +21,11 @@
   <ItemGroup>
     <ClCompile Include="lua.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\lualib\lualib.vcxproj">
+      <Project>{973d7157-6aaa-49f8-b91c-19340a80927e}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{20DE79E0-2B09-4387-9488-F538F9B23737}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -116,7 +121,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\src\lualib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\libs\lualib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
