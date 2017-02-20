@@ -557,7 +557,7 @@ void luaV_execute(lua_State *L) {
 		lua_assert(base <= L->top && L->top < L->stack + L->stacksize);
 		OpCode op = GET_OPCODE(i);
 		// ≤‚ ‘ ‰≥ˆ
-		printf("Instruction: %d\n", (int)op);
+		// printf("Instruction: %d\n", (int)op);
 		vmdispatch(op) {
 			vmcase(OP_MOVE,
 				setobjs2s(L, ra, RB(i));

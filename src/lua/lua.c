@@ -119,6 +119,15 @@ static void print_usage(const char *badoption) {
 		progname);
 }
 
+//=====================================================================
+static int lua_get_var(lua_State *L) {
+	lua_pushnumber(L, 1111);
+	lua_pushstring(L, "helloworld");
+	return 2;
+}
+//=====================================================================
+
+
 //  ‰≥ˆ–≈œ¢
 static void l_message(const char *pname, const char *msg) {
 	if (pname) {
@@ -487,6 +496,11 @@ static int pmain(lua_State *L) {
 	luaL_checkversion(L);
 	lua_gc(L, LUA_GCSTOP, 0);  /* stop collector during initialization */
 	luaL_openlibs(L);  /* open libraries */
+
+	//======================================
+	lua_register(L, "get_var", lua_get_var);
+	//======================================
+
 	lua_gc(L, LUA_GCRESTART, 0);
 
 	if (!args[has_E] && handle_luainit(L) != LUA_OK) {
@@ -550,3 +564,4 @@ int main(int argc, char **argv) {
 	lua_close(L);
 	return (result && status == LUA_OK) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+
