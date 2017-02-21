@@ -18,6 +18,24 @@ static int math_average(lua_State *L) {
 	return 2;                   
 }
 
+static int math_add(lua_State *L) {
+	lua_Number op1 = luaL_checknumber(L, 1);
+	lua_Number op2 = luaL_checknumber(L, 2);
+
+	lua_pushnumber(L, op1 + op2);
+
+	return 1;
+}
+
+static int math_sub(lua_State *L) {
+	lua_Number op1 = luaL_checknumber(L, 1);
+	lua_Number op2 = luaL_checknumber(L, 2);
+
+	lua_pushnumber(L, op1 - op2);
+
+	return 1;
+}
+
 static int math_hello(lua_State* L) {
 	printf("hello world!");
 	return 0;
@@ -25,6 +43,8 @@ static int math_hello(lua_State* L) {
 
 static const struct luaL_Reg tstlib[] = {
 	{ "average", math_average },
+	{ "add", math_add },
+	{ "sub", math_sub },
 	{ "hello", math_hello },
 	{ NULL, NULL }
 };
