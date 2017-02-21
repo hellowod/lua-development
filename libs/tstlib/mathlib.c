@@ -50,6 +50,8 @@ static const struct luaL_Reg tstlib[] = {
 };
 
 LUA_TSTAPI int luaopen_tstlib(lua_State *L) {
+	// lua_register(L, "tst", tstlib);
+
 	luaL_newlib(L, tstlib);
 	lua_pushvalue(L, -1);
 	lua_setglobal(L, "tst");
