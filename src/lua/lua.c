@@ -469,7 +469,7 @@ static int handle_luainit(lua_State *L) {
 }
 
 // static 入口函数再main中调用
-static int pmain(lua_State *L) {
+static int pmain11(lua_State *L) {
 	// 解析参数
 	int argc = (int)lua_tointeger(L, 1);
 	char **argv = (char **)lua_touserdata(L, 2);
@@ -533,7 +533,7 @@ static int pmain(lua_State *L) {
 }
 
 
-int main(int argc, char **argv) {
+int main11(int argc, char **argv) {
 	int status, result;
 
 	// 创建Lua状态机
