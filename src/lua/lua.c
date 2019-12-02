@@ -1,6 +1,6 @@
-/*
+ï»¿/*
 ** $Id: lua.c,v 1.205 2012/05/23 15:37:09 roberto Exp $
-** lua½âÊÍÆ÷-×¢ÒâÇø±ğÓÚlua±àÒëÆ÷
+** luaè§£é‡Šå™¨-æ³¨æ„åŒºåˆ«äºluaç¼–è¯‘å™¨
 ** See Copyright Notice in lua.h
 */
 
@@ -98,7 +98,7 @@ static void laction(int i) {
 }
 
 
-// ´òÓ¡²ÎÊıËµÃ÷
+// æ‰“å°å‚æ•°è¯´æ˜
 static void print_usage(const char *badoption) {
 	luai_writestringerror("%s: ", progname);
 	if (badoption[1] == 'e' || badoption[1] == 'l')
@@ -128,7 +128,7 @@ static int lua_get_var(lua_State *L) {
 //=====================================================================
 
 
-// Êä³öĞÅÏ¢
+// è¾“å‡ºä¿¡æ¯
 static void l_message(const char *pname, const char *msg) {
 	if (pname) {
 		luai_writestringerror("%s: ", pname);
@@ -136,7 +136,7 @@ static void l_message(const char *pname, const char *msg) {
 	luai_writestringerror("%s\n", msg);
 }
 
-// »ã±¨Ö´ĞĞĞÅÏ¢
+// æ±‡æŠ¥æ‰§è¡Œä¿¡æ¯
 static int report(lua_State *L, int status) {
 	if (status != LUA_OK && !lua_isnil(L, -1)) {
 		const char *msg = lua_tostring(L, -1);
@@ -151,7 +151,7 @@ static int report(lua_State *L, int status) {
 	return status;
 }
 
-// ĞéÄâ»ú×îÖÕ±¨¸æĞÅÏ¢
+// è™šæ‹Ÿæœºæœ€ç»ˆæŠ¥å‘Šä¿¡æ¯
 static void finalreport(lua_State *L, int status) {
 	if (status != LUA_OK) {
 		const char *msg = (lua_type(L, -1) == LUA_TSTRING) ? lua_tostring(L, -1) : NULL;
@@ -163,7 +163,7 @@ static void finalreport(lua_State *L, int status) {
 	}
 }
 
-// ´òÓ¡·µ»Ø½á¹û
+// æ‰“å°è¿”å›ç»“æœ
 static int traceback(lua_State *L) {
 	const char *msg = lua_tostring(L, 1);
 	if (msg) {
@@ -178,7 +178,7 @@ static int traceback(lua_State *L) {
 	return 1;
 }
 
-// Ö´ĞĞ²ÎÊıÊäÈëµÄ½Å±¾
+// æ‰§è¡Œå‚æ•°è¾“å…¥çš„è„šæœ¬
 static int docall(lua_State *L, int narg, int nres) {
 	int status;
 	int base = lua_gettop(L) - narg;  /* function index */
@@ -192,13 +192,13 @@ static int docall(lua_State *L, int narg, int nres) {
 	return status;
 }
 
-// ´òÓ¡°æ±¾ĞÅÏ¢
+// æ‰“å°ç‰ˆæœ¬ä¿¡æ¯
 static void print_version(void) {
 	luai_writestring(LUA_COPYRIGHT, strlen(LUA_COPYRIGHT));
 	luai_writeline();
 }
 
-// µÃµ½²ÎÊıÊıÁ¿
+// å¾—åˆ°å‚æ•°æ•°é‡
 static int getargs(lua_State *L, char **argv, int n) {
 	int narg;
 	int i;
@@ -219,7 +219,7 @@ static int getargs(lua_State *L, char **argv, int n) {
 	return narg;
 }
 
-// ´¦Àí½Å±¾ÎÄ¼ş
+// å¤„ç†è„šæœ¬æ–‡ä»¶
 static int dofile(lua_State *L, const char *name) {
 	int status = luaL_loadfile(L, name);
 	if (status == LUA_OK) {
@@ -228,7 +228,7 @@ static int dofile(lua_State *L, const char *name) {
 	return report(L, status);
 }
 
-// ´¦Àí×Ö·û´®
+// å¤„ç†å­—ç¬¦ä¸²
 static int dostring(lua_State *L, const char *s, const char *name) {
 	int status = luaL_loadbuffer(L, s, strlen(s), name);
 	if (status == LUA_OK) {
@@ -237,7 +237,7 @@ static int dostring(lua_State *L, const char *s, const char *name) {
 	return report(L, status);
 }
 
-// ´¦Àí¿â½Å±¾
+// å¤„ç†åº“è„šæœ¬
 static int dolibrary(lua_State *L, const char *name) {
 	int status;
 	lua_getglobal(L, "require");
@@ -274,7 +274,7 @@ static int incomplete(lua_State *L, int status) {
 	return 0;  /* else... */
 }
 
-// ´¦ÀíĞĞÄÚÈİ
+// å¤„ç†è¡Œå†…å®¹
 static int pushline(lua_State *L, int firstline) {
 	char buffer[LUA_MAXINPUT];
 	char *b = buffer;
@@ -293,7 +293,7 @@ static int pushline(lua_State *L, int firstline) {
 	return 1;
 }
 
-// ¼ÓÔØĞĞÄÚÈİ
+// åŠ è½½è¡Œå†…å®¹
 static int loadline(lua_State *L) {
 	int status;
 	lua_settop(L, 0);
@@ -320,7 +320,7 @@ static int loadline(lua_State *L) {
 	return status;
 }
 
-// Ö´ĞĞ½»»¥´°¿Ú±àÂë
+// æ‰§è¡Œäº¤äº’çª—å£ç¼–ç 
 static void dotty(lua_State *L) {
 	int status;
 	const char *oldprogname = progname;
@@ -344,9 +344,9 @@ static void dotty(lua_State *L) {
 	progname = oldprogname;
 }
 
-// Ö´ĞĞÊäÈë²ÎÊıµÄ½Å±¾
+// æ‰§è¡Œè¾“å…¥å‚æ•°çš„è„šæœ¬
 static int handle_script(lua_State *L, char **argv, int n) {
-	// ½Å±¾Ãû³Æ
+	// è„šæœ¬åç§°
 	int status;
 	const char *fname;
 	int narg = getargs(L, argv, n);  /* collect arguments */
@@ -356,11 +356,11 @@ static int handle_script(lua_State *L, char **argv, int n) {
 		fname = NULL;  /* stdin */
 	}
 
-	// ¼ÓÔØ½Å±¾
+	// åŠ è½½è„šæœ¬
 	status = luaL_loadfile(L, fname);
 	lua_insert(L, -(narg + 1));
 	if (status == LUA_OK) {
-		// Ö´ĞĞ½Å±¾
+		// æ‰§è¡Œè„šæœ¬
 		status = docall(L, narg, LUA_MULTRET);
 	} else {
 		lua_pop(L, narg);
@@ -368,19 +368,19 @@ static int handle_script(lua_State *L, char **argv, int n) {
 	return report(L, status);
 }
 
-// ¼ì²é¸Ã²ÎÊıÄ©Î²ÊÇ·ñÃ»ÓĞ¶îÍâµÄ×Ö·û
+// æ£€æŸ¥è¯¥å‚æ•°æœ«å°¾æ˜¯å¦æ²¡æœ‰é¢å¤–çš„å­—ç¬¦
 #define noextrachars(x)		{if ((x)[2] != '\0') return -1;}
 
-// ²ÎÊıÖ¸Ê¾·ûµÄË÷Òı
+// å‚æ•°æŒ‡ç¤ºç¬¦çš„ç´¢å¼•
 #define has_i		0	/* -i */
 #define has_v		1	/* -v */
 #define has_e		2	/* -e */
 #define has_E		3	/* -E */
 
-// ²ÎÊıÊıÁ¿
+// å‚æ•°æ•°é‡
 #define num_has		4
 
-// ½âÎö²ÎÊıargs
+// è§£æå‚æ•°args
 static int collectargs(char **argv, int *args) {
 	int i;
 	for (i = 1; argv[i] != NULL; i++) {
@@ -468,9 +468,9 @@ static int handle_luainit(lua_State *L) {
 
 }
 
-// static Èë¿Úº¯ÊıÔÙmainÖĞµ÷ÓÃ
+// static å…¥å£å‡½æ•°å†mainä¸­è°ƒç”¨
 static int pmain11(lua_State *L) {
-	// ½âÎö²ÎÊı
+	// è§£æå‚æ•°
 	int argc = (int)lua_tointeger(L, 1);
 	char **argv = (char **)lua_touserdata(L, 2);
 	int script;
@@ -492,7 +492,7 @@ static int pmain11(lua_State *L) {
 		lua_setfield(L, LUA_REGISTRYINDEX, "LUA_NOENV");
 	}
 
-	// ¼ÓÔØlua±ê×¼
+	// åŠ è½½luaæ ‡å‡†
 	luaL_checkversion(L);
 	lua_gc(L, LUA_GCSTOP, 0);  /* stop collector during initialization */
 	luaL_openlibs(L);  /* open libraries */
@@ -507,12 +507,12 @@ static int pmain11(lua_State *L) {
 		return 0;  /* error running LUA_INIT */
 	}
 
-	// Ö´ĞĞ²ÎÊıÄÚÈİ
+	// æ‰§è¡Œå‚æ•°å†…å®¹
 	if (!runargs(L, argv, (script > 0) ? script : argc)) {
 		return 0;
 	}
 
-	// Ö´ĞĞmain½Å±¾
+	// æ‰§è¡Œmainè„šæœ¬
 	if (script && handle_script(L, argv, script) != LUA_OK) {
 		return 0;
 	}
@@ -536,7 +536,7 @@ static int pmain11(lua_State *L) {
 int main11(int argc, char **argv) {
 	int status, result;
 
-	// ´´½¨Lua×´Ì¬»ú
+	// åˆ›å»ºLuaçŠ¶æ€æœº
 	lua_State *L = luaL_newstate();
 
 	if (L == NULL) {
@@ -544,18 +544,18 @@ int main11(int argc, char **argv) {
 		return EXIT_FAILURE;
 	}
 
-	// ÍêÕûº¯Êıµ÷ÓÃ¹ı³Ì
+	// å®Œæ•´å‡½æ•°è°ƒç”¨è¿‡ç¨‹
 	//########################################
 
-	// º¯ÊıÈëÕ»
+	// å‡½æ•°å…¥æ ˆ
 	lua_pushcfunction(L, &pmain);
-	// º¯ÊıµÚÒ»¸ö²ÎÊıÈëÕ»£¨int£©
+	// å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°å…¥æ ˆï¼ˆintï¼‰
 	lua_pushinteger(L, argc);
-	// º¯ÊıµÚ¶ş¸ö²ÎÊıÈëÕ»£¨userdata£©
+	// å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°å…¥æ ˆï¼ˆuserdataï¼‰
 	lua_pushlightuserdata(L, argv);
-	// µ÷ÓÃº¯Êı£¨L£¬²ÎÊı¸öÊı£¬·µ»ØÖµ¸öÊı£¬´íÎóĞÅÏ¢£©
+	// è°ƒç”¨å‡½æ•°ï¼ˆLï¼Œå‚æ•°ä¸ªæ•°ï¼Œè¿”å›å€¼ä¸ªæ•°ï¼Œé”™è¯¯ä¿¡æ¯ï¼‰
 	status = lua_pcall(L, 2, 1, 0);
-	// º¯Êı·µ»Ø½á¹û
+	// å‡½æ•°è¿”å›ç»“æœ
 	result = lua_toboolean(L, -1);
 
 	//########################################

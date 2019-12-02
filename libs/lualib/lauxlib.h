@@ -1,8 +1,8 @@
-/*
+ï»¿/*
 ** $Id: lauxlib.h,v 1.120 2011/11/29 15:55:08 roberto Exp $
 ** Auxiliary functions for building Lua libraries
-** See Copyright Notice in lua.h¡¢
-** Ö÷ÒªÌá¹©±ê×¼¿â¸¨Öúº¯ÊıAPI
+** See Copyright Notice in lua.hã€
+** ä¸»è¦æä¾›æ ‡å‡†åº“è¾…åŠ©å‡½æ•°API
 */
 
 #ifndef lauxlib_h
@@ -72,7 +72,7 @@ LUALIB_API int (luaL_loadfilex)(lua_State *L, const char *filename, const char *
 LUALIB_API int (luaL_loadbufferx)(lua_State *L, const char *buff, size_t sz, const char *name, const char *mode);
 LUALIB_API int (luaL_loadstring)(lua_State *L, const char *s);
 
-// ÊµÀı»¯lua×´Ì¬»ú£¨Ö¸Õëº¯Êı£©
+// å®ä¾‹åŒ–luaçŠ¶æ€æœºï¼ˆæŒ‡é’ˆå‡½æ•°ï¼‰
 LUALIB_API lua_State *(luaL_newstate)(void);
 
 LUALIB_API int (luaL_len)(lua_State *L, int idx);

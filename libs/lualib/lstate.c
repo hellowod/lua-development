@@ -1,6 +1,6 @@
-/*
+ï»¿/*
 ** $Id: lstate.c,v 2.98 2012/05/30 12:33:44 roberto Exp $
-** lua½âÊÍÆ÷×´Ì¬
+** luaè§£é‡Šå™¨çŠ¶æ€
 ** See Copyright Notice in lua.h
 */
 
@@ -174,15 +174,15 @@ static void init_registry(lua_State *L, global_State *g) {
 }
 
 
-// ³õÊ¼»¯luastate×´Ì¬£¬¿ÉÄÜ»áÒıÆğÄÚ´æ·ÖÅä´íÎó
+// åˆå§‹åŒ–luastateçŠ¶æ€ï¼Œå¯èƒ½ä¼šå¼•èµ·å†…å­˜åˆ†é…é”™è¯¯
 static void f_luaopen(lua_State *L, void *ud) {
 	global_State *g = G(L);
 	UNUSED(ud);
-	// ³õÊ¼»¯Õ»
+	// åˆå§‹åŒ–æ ˆ
 	stack_init(L, L);
-	// ³õÊ¼»¯×¢²á±í
+	// åˆå§‹åŒ–æ³¨å†Œè¡¨
 	init_registry(L, g);
-	// ³õÊ¼»¯×Ö·û´®±í
+	// åˆå§‹åŒ–å­—ç¬¦ä¸²è¡¨
 	luaS_resize(L, MINSTRTABSIZE);
 
 	luaT_init(L);
@@ -218,7 +218,7 @@ static void preinit_state(lua_State *L, global_State *g) {
 	L->errfunc = 0;
 }
 
-// ¹Ø±Õ×´Ì¬
+// å…³é—­çŠ¶æ€
 static void close_state(lua_State *L) {
 	global_State *g = G(L);
 	luaF_close(L, L->stack);  /* close all upvalues for this thread */
@@ -259,8 +259,8 @@ void luaE_freethread(lua_State *L, lua_State *L1) {
 	luaM_free(L, l);
 }
 
-// ÊµÀı»¯lua×´Ì¬»ú£¨Ö¸Õëº¯Êı£©
-// Éú³ÉluastateºÍglobalstate×´Ì¬
+// å®ä¾‹åŒ–luaçŠ¶æ€æœºï¼ˆæŒ‡é’ˆå‡½æ•°ï¼‰
+// ç”Ÿæˆluastateå’ŒglobalstateçŠ¶æ€
 LUA_API lua_State *lua_newstate(lua_Alloc f, void *ud) {
 	int i;
 	lua_State *L;

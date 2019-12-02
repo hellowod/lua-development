@@ -1,4 +1,4 @@
-#ifndef MATHLIB_H
+﻿#ifndef MATHLIB_H
 #define MATHLIB_H
 
 #include "lua.h"

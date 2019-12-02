@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include "mathlib.h"
 
 static int math_average(lua_State *L) {
@@ -9,12 +9,12 @@ static int math_average(lua_State *L) {
 	for (i = 1; i <= n; i++) {
 		sum += lua_tonumber(L, i);
 	}
-	// Ñ¹ÈëÆ½¾ùÖµ 
+	// åŽ‹å…¥å¹³å‡å€¼ 
 	lua_pushnumber(L, sum / n);
-	// Ñ¹ÈëºÍ
+	// åŽ‹å…¥å’Œ
 	lua_pushnumber(L, sum);
 
-	// ·µ»ØÁ½¸ö½á¹û
+	// è¿”å›žä¸¤ä¸ªç»“æžœ
 	return 2;                   
 }
 

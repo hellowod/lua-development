@@ -1,11 +1,11 @@
-/*
+ï»¿/*
 ** $Id: luac.c,v 1.69 2011/11/29 17:46:33 lhf Exp $
-** lua±àÒëÆ÷£¨½«×Ö½ÚÂë±£´æ³ÉÎÄ¼þ£¬Ò²¿ÉÒÔÁÐ¾Ù³ö×Ö½ÚÂë£©
+** luaç¼–è¯‘å™¨ï¼ˆå°†å­—èŠ‚ç ä¿å­˜æˆæ–‡ä»¶ï¼Œä¹Ÿå¯ä»¥åˆ—ä¸¾å‡ºå­—èŠ‚ç ï¼‰
 **
-** ±àÒëÕâ¸öÏîÄ¿Ìõ¼þ£º
-** 1. ±àÒë¸ÃÏîÄ¿ÐèÒªÒýÓÃ¾²Ì¬¿â£¬Ä¿Ç°±àÒëµÄÊÇ¶¯Ì¬¿â£¬Èç¹ûÐèÒª
-**	  ±àÒë¸ÃÏîÄ¿°ÑlibsÏîÄ¿ÐÞ¸ÄÎª¾²Ì¬ÏîÄ¿
-** 2. ½«ÏîÄ¿±àÒëÉèÖÃdebug x86
+** ç¼–è¯‘è¿™ä¸ªé¡¹ç›®æ¡ä»¶ï¼š
+** 1. ç¼–è¯‘è¯¥é¡¹ç›®éœ€è¦å¼•ç”¨é™æ€åº“ï¼Œç›®å‰ç¼–è¯‘çš„æ˜¯åŠ¨æ€åº“ï¼Œå¦‚æžœéœ€è¦
+**	  ç¼–è¯‘è¯¥é¡¹ç›®æŠŠlibsé¡¹ç›®ä¿®æ”¹ä¸ºé™æ€é¡¹ç›®
+** 2. å°†é¡¹ç›®ç¼–è¯‘è®¾ç½®debug x86
 **
 ** See Copyright Notice in lua.h
 */
@@ -219,7 +219,7 @@ int main(int argc, char* argv[]) {
 	lua_pushinteger(L, argc);
 	lua_pushlightuserdata(L, argv);
 	
-	// µ÷ÓÃpmainº¯Êý
+	// è°ƒç”¨pmainå‡½æ•°
 	if (lua_pcall(L, 2, 0, 0) != LUA_OK) {
 		fatal(lua_tostring(L, -1));
 	}
@@ -301,7 +301,7 @@ static void PrintConstant(const Proto* f, int i)
 #define UPVALNAME(x) ((f->upvalues[x].name) ? getstr(f->upvalues[x].name) : "-")
 #define MYK(x)		(-1-(x))
 
-// Êä³öÖ¸Áî
+// è¾“å‡ºæŒ‡ä»¤
 static void PrintCode(const Proto* f)
 {
 	const Instruction* code = f->code;
@@ -408,7 +408,7 @@ static void PrintCode(const Proto* f)
 #define SS(x)	((x==1)?"":"s")
 #define S(x)	(int)(x),SS(x)
 
-// ×Ö½ÚÂë¿éÍ·ÐÅÏ¢
+// å­—èŠ‚ç å—å¤´ä¿¡æ¯
 static void PrintHeader(const Proto* f) {
 	const char* s = f->source ? getstr(f->source) : "=?";
 	if (*s == '@' || *s == '=') {
@@ -431,7 +431,7 @@ static void PrintHeader(const Proto* f) {
 		S(f->sizelocvars), S(f->sizek), S(f->sizep));
 }
 
-// Êä³öDebugÐÅÏ¢
+// è¾“å‡ºDebugä¿¡æ¯
 static void PrintDebug(const Proto* f) {
 	int i, n;
 	n = f->sizek;
@@ -455,7 +455,7 @@ static void PrintDebug(const Proto* f) {
 	}
 }
 
-// Êä³ö
+// è¾“å‡º
 static void PrintFunction(const Proto* f, int full) {
 	int i, n = f->sizep;
 	PrintHeader(f);
