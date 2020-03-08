@@ -1,12 +1,12 @@
-lua�ֽ���ָ��
+﻿lua字节码指令
 
-	lua���������ִ�е��Ǿ��������lua�ֽ���ָ�������ʱ������
-�ֽ���ָ������ɷ������ֽ��뵽����ʲô���ɼ�������ɡ�
+	lua虚拟机最终执行的是经过编译的lua字节码指令，这里暂时不关心
+字节码指令的生成方法，字节码到底是什么，由几部分组成。
 	
-	1. �����ʽ
-	Դ�룺
+	1. 编译格式
+	源码：
 	print("hello world");
-	�ֽ��룺
+	字节码：
 	main <main.lua:0,0> (4 instructions at 00468520)
 	0+ params, 2 slots, 1 upvalue, 0 locals, 2 constants, 0 functions
 			1       [1]     GETTABUP        0 	0 	-1  	; _ENV "print"
@@ -14,15 +14,15 @@ lua�ֽ���ָ��
 			3       [1]     CALL            0 	2 	1
 			4       [1]     RETURN          0 	1
 		
-	���ͣ�	C		LN		OPCODE			A	B	C
+	解释：	C		LN		OPCODE			A	B	C
 			C		LN		OPCODE			A	Bx
 			C		LN		OPCODE			A	sBx
-	��ע��C-����ָ������,LN����ָ����к�
+	备注：C-代表指令数量,LN代表指令的行号
 	
-	2. ָ�����
-	���ࣺiABC	iABx	iAsBx	iAx
-	�����ж��壺enum OpMode {iABC, iABx, iAsBx, iAx};  /* basic instruction format */
+	2. 指令分类
+	种类：iABC	iABx	iAsBx	iAx
+	代码中定义：enum OpMode {iABC, iABx, iAsBx, iAx};  /* basic instruction format */
 	
-	3.iABCָ��
+	3.iABC指令
 	
 	

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"lualib.h": "c",
+			"lauxlib.h": "c",
+			"lopcodes.h": "c"
+		}
+	}
+}

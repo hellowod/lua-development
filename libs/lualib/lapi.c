@@ -563,7 +563,7 @@ LUA_API const char *lua_pushfstring(lua_State *L, const char *fmt, ...) {
 	return ret;
 }
 
-// ÉèÖÃº¯Êý
+// è®¾ç½®å‡½æ•°
 LUA_API void lua_pushcclosure(lua_State *L, lua_CFunction fn, int n) {
 	lua_lock(L);
 	if (n == 0) {
@@ -586,7 +586,7 @@ LUA_API void lua_pushcclosure(lua_State *L, lua_CFunction fn, int n) {
 }
 
 
-// ÉèÖÃbool±äÁ¿
+// è®¾ç½®boolå˜é‡
 LUA_API void lua_pushboolean(lua_State *L, int b) {
 	lua_lock(L);
 	setbvalue(L->top, (b != 0));  /* ensure that true is 1 */
@@ -595,7 +595,7 @@ LUA_API void lua_pushboolean(lua_State *L, int b) {
 }
 
 
-// ÉèÖÃuserdata
+// è®¾ç½®userdata
 LUA_API void lua_pushlightuserdata(lua_State *L, void *p) {
 	lua_lock(L);
 	setpvalue(L->top, p);
