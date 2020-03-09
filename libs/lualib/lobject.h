@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 ** $Id: lobject.h,v 2.70 2012/05/11 14:10:50 roberto Exp $
 ** Type definitions for Lua objects
 ** See Copyright Notice in lua.h
@@ -396,7 +396,7 @@ struct lua_TValue {
   TValuefields;
 };
 
-// Õ»ÔªËØ£¨¶ÔÏó£©
+// æ ˆå…ƒç´ ï¼ˆå¯¹è±¡ï¼‰
 typedef TValue *StkId;
 
 

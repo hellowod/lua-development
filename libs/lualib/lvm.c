@@ -1,6 +1,6 @@
-/*
+ï»¿/*
 ** $Id: lvm.c,v 2.152 2012/06/08 15:14:04 roberto Exp $
-** LuaÐéÄâ»ú
+** Luaè™šæ‹Ÿæœº
 ** See Copyright Notice in lua.h
 */
 
@@ -543,7 +543,7 @@ void luaV_execute(lua_State *L) {
 	k = cl->p->k;
 	base = ci->u.l.base;
 
-	// ½âÊÍÆ÷Ö÷Ñ­»·
+	// è§£é‡Šå™¨ä¸»å¾ªçŽ¯
 	for (;;) {
 		Instruction i = *(ci->u.l.savedpc++);
 		StkId ra;
@@ -556,8 +556,8 @@ void luaV_execute(lua_State *L) {
 		lua_assert(base == ci->u.l.base);
 		lua_assert(base <= L->top && L->top < L->stack + L->stacksize);
 		OpCode op = GET_OPCODE(i);
-		// ²âÊÔÊä³ö
-		// printf("Instruction: %d\n", (int)op);
+		// æµ‹è¯•è¾“å‡º
+		//printf("Instruction: %d\n", (int)op);
 		vmdispatch(op) {
 			vmcase(OP_MOVE,
 				setobjs2s(L, ra, RB(i));

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 ** $Id: lauxlib.c,v 1.244 2012/05/31 20:28:45 roberto Exp $
 ** Auxiliary functions for building Lua libraries
 ** See Copyright Notice in lua.h
@@ -628,7 +628,7 @@ static int skipcomment(LoadF *lf, int *cp) {
 	else return 0;  /* no comment */
 }
 
-// ¼ÓÔØlua½Å±¾
+// åŠ è½½luaè„šæœ¬
 LUALIB_API int luaL_loadfilex(lua_State *L, const char *filename, const char *mode) {
 	LoadF lf;
 	int status, readstatus;
@@ -941,9 +941,9 @@ static int panic(lua_State *L) {
 	return 0;  /* return to Lua to abort */
 }
 
-// ÊµÀı»¯lua×´Ì¬»ú£¨Ö¸Õëº¯Êı£©
+// å®ä¾‹åŒ–luaçŠ¶æ€æœºï¼ˆæŒ‡é’ˆå‡½æ•°ï¼‰
 LUALIB_API lua_State *luaL_newstate(void) {
-	// µ÷ÓÃlstate½Ó¿Ú½øĞĞ³õÊ¼»¯
+	// è°ƒç”¨lstateæ¥å£è¿›è¡Œåˆå§‹åŒ–
 	lua_State *L = lua_newstate(l_alloc, NULL);
 	if (L) {
 		lua_atpanic(L, &panic);
