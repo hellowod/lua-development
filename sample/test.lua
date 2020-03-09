@@ -4,3 +4,4 @@ end
 
 local r = add(100)
 print("result = %s", r)
+print("hello world")

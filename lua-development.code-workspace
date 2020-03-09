@@ -8,7 +8,10 @@
 		"files.associations": {
 			"lualib.h": "c",
 			"lauxlib.h": "c",
-			"lopcodes.h": "c"
+			"lopcodes.h": "c",
+			"cmath": "c",
+			"stddef.h": "c",
+			"lua.h": "c"
 		}
 	}
 }

@@ -259,7 +259,7 @@ void luaE_freethread(lua_State *L, lua_State *L1) {
 	luaM_free(L, l);
 }
 
-// 实例化lua状态机（指针函数）
+
 // 生成luastate和globalstate状态
 LUA_API lua_State *lua_newstate(lua_Alloc f, void *ud) {
 	int i;

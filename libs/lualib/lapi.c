@@ -568,8 +568,7 @@ LUA_API void lua_pushcclosure(lua_State *L, lua_CFunction fn, int n) {
 	lua_lock(L);
 	if (n == 0) {
 		setfvalue(L->top, fn);
-	}
-	else {
+	} else {
 		Closure *cl;
 		api_checknelems(L, n);
 		api_check(L, n <= MAXUPVAL, "upvalue index too large");
@@ -714,9 +713,9 @@ LUA_API int lua_getmetatable(lua_State *L, int objindex) {
 		mt = G(L)->mt[ttypenv(obj)];
 		break;
 	}
-	if (mt == NULL)
+	if (mt == NULL){
 		res = 0;
-	else {
+	} else {
 		sethvalue(L, L->top, mt);
 		api_incr_top(L);
 		res = 1;

@@ -891,8 +891,7 @@ LUALIB_API int luaL_getsubtable(lua_State *L, int idx, const char *fname) {
 ** is true, also registers the result in the global table.
 ** Leaves resulting module on the top.
 */
-LUALIB_API void luaL_requiref(lua_State *L, const char *modname,
-	lua_CFunction openf, int glb) {
+LUALIB_API void luaL_requiref(lua_State *L, const char *modname, lua_CFunction openf, int glb) {
 	lua_pushcfunction(L, openf);
 	lua_pushstring(L, modname);  /* argument to open function */
 	lua_call(L, 1, 1);  /* open module */
@@ -907,8 +906,7 @@ LUALIB_API void luaL_requiref(lua_State *L, const char *modname,
 }
 
 
-LUALIB_API const char *luaL_gsub(lua_State *L, const char *s, const char *p,
-	const char *r) {
+LUALIB_API const char *luaL_gsub(lua_State *L, const char *s, const char *p, const char *r) {
 	const char *wild;
 	size_t l = strlen(p);
 	luaL_Buffer b;
