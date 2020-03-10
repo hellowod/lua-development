@@ -154,12 +154,12 @@ typedef struct global_State {
 struct lua_State {
   CommonHeader;
   lu_byte status;
-  StkId top;  /* first free slot in the stack */
+  StkId top;  /* first free slot in the stack 栈上的第一个空闲槽*/
   global_State *l_G;
   CallInfo *ci;  /* call info for current function */
   const Instruction *oldpc;  /* last pc traced */
-  StkId stack_last;  /* last free slot in the stack */
-  StkId stack;  /* stack base */
+  StkId stack_last;  /* last free slot in the stack 栈上的最后一个空闲槽*/
+  StkId stack;  /* stack base 栈底*/
   int stacksize;
   unsigned short nny;  /* number of non-yieldable calls in stack */
   unsigned short nCcalls;  /* number of nested C calls */
@@ -183,14 +183,14 @@ struct lua_State {
 ** Union of all collectable objects
 */
 union GCObject {
-  GCheader gch;  /* common header */
-  union TString ts;
+  GCheader gch;  /* common header GC实现*/
+  union TString ts;/* 字符串 */
   union Udata u;
-  union Closure cl;
-  struct Table h;
-  struct Proto p;
+  union Closure cl;/*闭包*/
+  struct Table h;/*表*/
+  struct Proto p;/*函数*/
   struct UpVal uv;
-  struct lua_State th;  /* thread */
+  struct lua_State th;  /* thread 线程*/
 };
 
 

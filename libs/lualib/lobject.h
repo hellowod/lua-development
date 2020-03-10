@@ -101,7 +101,7 @@ typedef union Value Value;
 ** an actual value plus a tag with its type.
 */
 
-#define TValuefields	Value value_; int tt_
+#define TValuefields	Value value_; int tt_//value_值，tt_类型
 
 typedef struct lua_TValue TValue;
 
@@ -184,9 +184,11 @@ typedef struct lua_TValue TValue;
 #define setnvalue(obj,x) \
   { TValue *io=(obj); num_(io)=(x); settt_(io, LUA_TNUMBER); }
 
-#define changenvalue(o,x)	check_exp(ttisnumber(o), num_(o)=(x))
+#define changenvalue(o,x)	\
+  check_exp(ttisnumber(o), num_(o)=(x))
 
-#define setnilvalue(obj) settt_(obj, LUA_TNIL)
+#define setnilvalue(obj) \
+  settt_(obj, LUA_TNIL)
 
 #define setfvalue(obj,x) \
   { TValue *io=(obj); val_(io).f=(x); settt_(io, LUA_TLCF); }
@@ -232,8 +234,8 @@ typedef struct lua_TValue TValue;
     val_(io).gc=cast(GCObject *, (x)); settt_(io, ctb(LUA_TTABLE)); \
     checkliveness(G(L),io); }
 
-#define setdeadvalue(obj)	settt_(obj, LUA_TDEADKEY)
-
+#define setdeadvalue(obj)	\
+  settt_(obj, LUA_TDEADKEY)
 
 
 #define setobj(L,obj1,obj2) \
@@ -385,13 +387,14 @@ typedef struct lua_TValue TValue;
 
 
 union Value {
-  GCObject *gc;    /* collectable objects */
-  void *p;         /* light userdata */
-  int b;           /* booleans */
-  lua_CFunction f; /* light C functions */
-  numfield         /* numbers */
+  GCObject *gc;    /* collectable objects 垃圾回收一些值 */
+  void *p;         /* light userdata 轻量级用户数据*/
+  int b;           /* booleans 对错*/
+  lua_CFunction f; /* light C functions 轻量级C函数*/
+  numfield         /* numbers double双浮点数*/
 };
 
+// 变量对象
 struct lua_TValue {
   TValuefields;
 };
@@ -509,20 +512,21 @@ typedef struct UpVal {
 #define ClosureHeader \
 	CommonHeader; lu_byte nupvalues; GCObject *gclist
 
+// 外部和内部apiC函数
 typedef struct CClosure {
   ClosureHeader;
-  lua_CFunction f;
-  TValue upvalue[1];  /* list of upvalues */
+  lua_CFunction f;//C函数原型
+  TValue upvalue[1];  /* list of upvalues 函数参数 */
 } CClosure;
 
-
+//lua函数
 typedef struct LClosure {
   ClosureHeader;
   struct Proto *p;
   UpVal *upvals[1];  /* list of upvalues */
 } LClosure;
 
-
+//函数
 typedef union Closure {
   CClosure c;
   LClosure l;
