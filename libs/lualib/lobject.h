@@ -570,7 +570,6 @@ typedef struct Table {
 } Table;
 
 
-
 /*
 ** `module' operation for hashing (size is always a power of 2)
 */

@@ -682,7 +682,9 @@ LUA_API void lua_rawgetp(lua_State *L, int idx, const void *p) {
 	lua_unlock(L);
 }
 
-
+/**
+ * 创建表 
+ */
 LUA_API void lua_createtable(lua_State *L, int narray, int nrec) {
 	Table *t;
 	lua_lock(L);
@@ -695,7 +697,9 @@ LUA_API void lua_createtable(lua_State *L, int narray, int nrec) {
 	lua_unlock(L);
 }
 
-
+/**
+ * 获取原表
+ */ 
 LUA_API int lua_getmetatable(lua_State *L, int objindex) {
 	const TValue *obj;
 	Table *mt = NULL;

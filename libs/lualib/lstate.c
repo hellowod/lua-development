@@ -311,8 +311,7 @@ LUA_API lua_State *lua_newstate(lua_Alloc f, void *ud) {
 		/* memory allocation error: free partial state */
 		close_state(L);
 		L = NULL;
-	}
-	else {
+	} else {
 		luai_userstateopen(L);
 	}
 	return L;

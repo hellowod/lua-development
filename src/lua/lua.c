@@ -470,8 +470,9 @@ static int handle_luainit(lua_State *L) {
 
 // static 入口函数再main中调用
 static int pmain(lua_State *L) {
-	// 解析参数
+	// 获取栈中第一个参数
 	int argc = (int)lua_tointeger(L, 1);
+	// 获取栈中第二个参数
 	char **argv = (char **)lua_touserdata(L, 2);
 	int script;
 	int args[num_has];

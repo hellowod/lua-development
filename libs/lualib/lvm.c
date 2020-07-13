@@ -544,7 +544,7 @@ void luaV_execute(lua_State *L) {
 	k = cl->p->k;
 	base = ci->u.l.base;
 
-	// 解释器主循环
+	// 虚拟机主循环
 	for (;;) {
 		Instruction i = *(ci->u.l.savedpc++);
 		StkId ra;
