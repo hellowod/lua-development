@@ -48,10 +48,10 @@
     <ClCompile Include="ltable.c" />
     <ClCompile Include="ltablib.c" />
     <ClCompile Include="ltm.c" />
-    <ClCompile Include="lua.c" />
     <ClCompile Include="lundump.c" />
     <ClCompile Include="lvm.c" />
     <ClCompile Include="lzio.c" />
+    <ClCompile Include="lutf8lib.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lapi.h" />
@@ -78,17 +78,18 @@
     <ClInclude Include="lualib.h" />
     <ClInclude Include="lundump.h" />
     <ClInclude Include="lvm.h" />
+    <ClInclude Include="lprefix.h" />
     <ClInclude Include="lzio.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{973D7157-6AAA-49F8-B91C-19340A80927E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>lualib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
