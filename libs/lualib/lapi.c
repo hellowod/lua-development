@@ -534,8 +534,7 @@ LUA_API void lua_pushcclosure (lua_State *L, lua_CFunction fn, int n) {
   if (n == 0) {
     setfvalue(L->top, fn);
     api_incr_top(L);
-  }
-  else {
+  } else {
     CClosure *cl;
     api_checknelems(L, n);
     api_check(L, n <= MAXUPVAL, "upvalue index too large");
@@ -591,8 +590,7 @@ static int auxgetstr (lua_State *L, const TValue *t, const char *k) {
   if (luaV_fastget(L, t, str, slot, luaH_getstr)) {
     setobj2s(L, L->top, slot);
     api_incr_top(L);
-  }
-  else {
+  } else {
     setsvalue2s(L, L->top, str);
     api_incr_top(L);
     luaV_finishget(L, t, L->top - 1, L->top - 1, slot);
@@ -633,8 +631,7 @@ LUA_API int lua_geti (lua_State *L, int idx, lua_Integer n) {
   if (luaV_fastget(L, t, n, slot, luaH_getint)) {
     setobj2s(L, L->top, slot);
     api_incr_top(L);
-  }
-  else {
+  } else {
     setivalue(L->top, n);
     api_incr_top(L);
     luaV_finishget(L, t, L->top - 1, L->top - 1, slot);
@@ -951,14 +948,13 @@ LUA_API int lua_pcallk (lua_State *L, int nargs, int nresults, int errfunc,
   int status;
   ptrdiff_t func;
   lua_lock(L);
-  api_check(L, k == NULL || !isLua(L->ci),
-    "cannot use continuations inside hooks");
+  api_check(L, k == NULL || !isLua(L->ci), "cannot use continuations inside hooks");
   api_checknelems(L, nargs+1);
   api_check(L, L->status == LUA_OK, "cannot do calls on non-normal thread");
   checkresults(L, nargs, nresults);
-  if (errfunc == 0)
-    func = 0;
-  else {
+  if (errfunc == 0) {
+	  func = 0;
+  } else {
     StkId o = index2addr(L, errfunc);
     api_checkstackindex(L, errfunc, o);
     func = savestack(L, o);
@@ -967,8 +963,7 @@ LUA_API int lua_pcallk (lua_State *L, int nargs, int nresults, int errfunc,
   if (k == NULL || L->nny > 0) {  /* no continuation or no yieldable? */
     c.nresults = nresults;  /* do a 'conventional' protected call */
     status = luaD_pcall(L, f_call, &c, savestack(L, c.func), func);
-  }
-  else {  /* prepare continuation (call is already protected by 'resume') */
+  } else {  /* prepare continuation (call is already protected by 'resume') */
     CallInfo *ci = L->ci;
     ci->u.c.k = k;  /* save continuation */
     ci->u.c.ctx = ctx;  /* save context */
