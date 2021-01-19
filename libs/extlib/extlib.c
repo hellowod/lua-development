@@ -1,18 +1,25 @@
-// extlib.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#define lextlib_c
+#define LUA_LIB
 
-int main1()
-{
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h> 
+#include <stdarg.h>
+
+#include "extlib.h"
+
+static int ext_number(lua_State *L) {
+	lua_Integer d = luaL_checkinteger(L, 1);
+	lua_pushinteger(L, d + 100);
 	return 1;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+static const struct luaL_Reg extlib[] = {
+	{"getnumber", ext_number},
+	{NULL, NULL}
+};
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+LUAMOD_API int luaopen_ext(lua_State* L) {
+	luaL_newlib(L, extlib);
+	return 1;
+}

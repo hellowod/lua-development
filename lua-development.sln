@@ -19,6 +19,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{564AD846-CCCE-4F44-BD36-298ABEB249EB}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "extlib", "libs\extlib\extlib.vcxproj", "{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{973D7157-6AAA-49F8-B91C-19340A80927E} = {973D7157-6AAA-49F8-B91C-19340A80927E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
