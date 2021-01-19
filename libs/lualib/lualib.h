@@ -47,11 +47,12 @@ LUAMOD_API int (luaopen_debug) (lua_State *L);
 #define LUA_LOADLIBNAME	"package"
 LUAMOD_API int (luaopen_package) (lua_State *L);
 
+/*标准自定义库*/
+#define LUA_TSTLIBNAME	"tst"
+LUAMOD_API int (luaopen_tst)(lua_State *L);
 
 /* open all previous libraries */
 LUALIB_API void (luaL_openlibs) (lua_State *L);
-
-
 
 #if !defined(lua_assert)
 #define lua_assert(x)	((void)0)

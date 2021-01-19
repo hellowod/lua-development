@@ -194,5 +194,8 @@
     <ClInclude Include="lprefix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ltstlib.c">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,28 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1259
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "src\lua\lua.vcxproj", "{20DE79E0-2B09-4387-9488-F538F9B23737}"
 	ProjectSection(ProjectDependencies) = postProject
 		{973D7157-6AAA-49F8-B91C-19340A80927E} = {973D7157-6AAA-49F8-B91C-19340A80927E}
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460} = {D62F4594-16C2-4EA7-B8E8-5732B7DA7460}
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B} = {6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luac", "src\luac\luac.vcxproj", "{39A48A1B-79F9-4AE0-A09A-1706D99D702C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{973D7157-6AAA-49F8-B91C-19340A80927E} = {973D7157-6AAA-49F8-B91C-19340A80927E}
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460} = {D62F4594-16C2-4EA7-B8E8-5732B7DA7460}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lualib", "libs\lualib\lualib.vcxproj", "{973D7157-6AAA-49F8-B91C-19340A80927E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{564AD846-CCCE-4F44-BD36-298ABEB249EB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tstlib", "libs\tstlib\tstlib.vcxproj", "{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}"
-	ProjectSection(ProjectDependencies) = postProject
-		{973D7157-6AAA-49F8-B91C-19340A80927E} = {973D7157-6AAA-49F8-B91C-19340A80927E}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "extlib", "libs\extlib\extlib.vcxproj", "{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,22 +60,25 @@ Global
 		{973D7157-6AAA-49F8-B91C-19340A80927E}.Release|x64.Build.0 = Release|x64
 		{973D7157-6AAA-49F8-B91C-19340A80927E}.Release|x86.ActiveCfg = Release|Win32
 		{973D7157-6AAA-49F8-B91C-19340A80927E}.Release|x86.Build.0 = Release|Win32
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Debug|ARM.ActiveCfg = Debug|Win32
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Debug|x64.ActiveCfg = Debug|x64
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Debug|x64.Build.0 = Debug|x64
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Debug|x86.ActiveCfg = Debug|Win32
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Debug|x86.Build.0 = Debug|Win32
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Release|ARM.ActiveCfg = Release|Win32
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Release|x64.ActiveCfg = Release|x64
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Release|x64.Build.0 = Release|x64
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Release|x86.ActiveCfg = Release|Win32
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460}.Release|x86.Build.0 = Release|Win32
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Debug|ARM.ActiveCfg = Debug|Win32
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Debug|x64.ActiveCfg = Debug|x64
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Debug|x64.Build.0 = Debug|x64
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Debug|x86.ActiveCfg = Debug|Win32
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Debug|x86.Build.0 = Debug|Win32
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Release|ARM.ActiveCfg = Release|Win32
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Release|x64.ActiveCfg = Release|x64
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Release|x64.Build.0 = Release|x64
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Release|x86.ActiveCfg = Release|Win32
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{973D7157-6AAA-49F8-B91C-19340A80927E} = {564AD846-CCCE-4F44-BD36-298ABEB249EB}
-		{D62F4594-16C2-4EA7-B8E8-5732B7DA7460} = {564AD846-CCCE-4F44-BD36-298ABEB249EB}
+		{6B2A2B85-99DA-4B24-BDFB-9CFBD0EF084B} = {564AD846-CCCE-4F44-BD36-298ABEB249EB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A46252A8-3E6B-4A54-A96F-7DA6DC6BCE68}
 	EndGlobalSection
 EndGlobal
